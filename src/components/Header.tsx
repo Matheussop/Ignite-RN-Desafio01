@@ -1,9 +1,13 @@
 import React from 'react';
 import { View, Text, StatusBar, StyleSheet } from 'react-native';
 
-export function Header() {
+interface IHeader{
+  theme: boolean
+}
+
+export function Header({theme}: IHeader) {
   return (
-    <View style={styles.header}>
+    <View style={theme ? [styles.header, {backgroundColor: '#483C67'}] : styles.header}>
       <Text style={styles.headerText}>to.</Text>
       <Text style={[styles.headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>
     </View>
@@ -23,5 +27,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#FFF',
     fontFamily: 'Poppins-Regular',
-  }
+  },
 });
