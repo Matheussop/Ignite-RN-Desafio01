@@ -1,13 +1,10 @@
 import React from 'react';
 import { View, Text, StatusBar, StyleSheet } from 'react-native';
 
-interface IHeader{
-  theme: boolean
-}
 
-export function Header({theme}: IHeader) {
+export function Header() {
   return (
-    <View style={theme ? [styles.header, {backgroundColor: '#483C67'}] : styles.header}>
+    <View style={styles.header}>
       <Text style={styles.headerText}>to.</Text>
       <Text style={[styles.headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>
     </View>

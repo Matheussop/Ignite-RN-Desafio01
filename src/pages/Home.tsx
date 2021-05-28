@@ -13,10 +13,8 @@ interface Task {
 
 export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [theme, setTheme] = useState(true);
 
   function handleAddTask(newTaskTitle: string) {
-    //TODO - add new task if it's not empty
     if(newTaskTitle || newTaskTitle != ""){
       const data: Task = {
         id: new Date().getTime(),
@@ -44,10 +42,6 @@ export function Home() {
     setTasks(newlistTask)
   }
 
-  function handleSwitchTheme(){
-    setTheme(!theme);
-  }
-
   function handleRemoveTask(id: number) {
     //TODO - remove task from state
     setTasks((oldState) => oldState.filter(skill =>
@@ -56,23 +50,11 @@ export function Home() {
   }
 
   return (
-    <View style={theme ? {backgroundColor: '#1F1F1F', flex: 1} : {backgroundColor: 'white', flex: 1}}>
-      <Header theme={theme}/>
+    <View style={{backgroundColor: 'white', flex: 1}}>
+      <Header />
 
-      <TodoInput addTask={handleAddTask} theme={theme} />
-      <View style={styles.viewSwitch}>
-        <Text style={theme ? [styles.textSwitch,{color: '#67E480'}]: styles.textSwitch}>Change Theme</Text>
-        <Switch 
-          style={styles.switchButton} 
-          onValueChange={handleSwitchTheme} 
-          value={theme}
-          thumbColor={theme ? '#988BC7' : '#273FAD'}
-          trackColor={{true: '#483C67', false: '#273FAD'}}
-        />
-      </View>
-
+      <TodoInput addTask={handleAddTask}/>
       <MyTasksList 
-        theme={theme}
         tasks={tasks} 
         onPress={handleMarkTaskAsDone} 
         onLongPress={handleRemoveTask} 
