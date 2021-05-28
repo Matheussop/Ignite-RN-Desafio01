@@ -31,17 +31,31 @@ export function Home() {
     // Não é necessário verificar se a task existe, poís este método so ira ativar 
     // quando o usuário clicar na task (ou seja ela precisa existir para que o método 
     // seja acionado)
-    var newlistTask: Task[] = [];
-    tasks.map((task) => {
-      if(task.id === id){
-        var auxTasks = task;
-        auxTasks.done = !auxTasks.done;
-        newlistTask.push(auxTasks)
-      }else{
-        newlistTask.push(task)
+
+    // A logica a seguir foi feita por mim 
+    // var newlistTask: Task[] = [];
+    // tasks.map((task) => {
+    //   if(task.id === id){
+    //     var auxTasks = task;
+    //     auxTasks.done = !auxTasks.done;
+    //     newlistTask.push(auxTasks)
+    //   }else{
+    //     newlistTask.push(task)
+    //   }
+    // })
+    // setTasks(newlistTask)
+
+    // A logica a seguir foi encontrada na comunidade do discord da rocketseat
+    const newListTask = tasks.map((task: Task) => {
+      if ( task.id === id ){
+        return {
+          ...task,
+          done:  !task.done
+        }
       }
-    })
-    setTasks(newlistTask)
+      return task;
+    });
+    setTasks(newListTask);
   }
 
   function handleSwitchTheme(){
